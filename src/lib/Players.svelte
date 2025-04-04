@@ -10,6 +10,7 @@
     ffa_lose_count: number;
     ffa_draw_count: number;
     eliminated: boolean;
+    sort_value: number;
   }
 
   import { onMount } from 'svelte';
@@ -29,6 +30,8 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       polledData = await response.json();
+
+      polledData.sort((a, b) => b.sort_value - a.sort_value);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
