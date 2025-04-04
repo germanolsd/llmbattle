@@ -2,6 +2,7 @@
 
 <script lang="ts">
   type Log = {
+    id: string;
     winner: string;
     loser: string;
     reasoning: string;
@@ -42,7 +43,7 @@
 
 {#if polledData}
   <div class="log">
-    {#each polledData as log}
+    {#each polledData as log (log.id)}
       <RenderBattle {...log} />
     {/each}
   </div>
