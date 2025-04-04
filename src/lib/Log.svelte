@@ -1,11 +1,20 @@
 <svelte:options runes />
-<script>
+
+<script lang="ts">
+  type Log = {
+    winner: string;
+    loser: string;
+    reasoning: string;
+  }
   import { onMount } from 'svelte';
   import {fetchUrl} from '../server/poller'
+  import RenderBattle from './RenderBattle.svelte';
+
+  // const mockData:Log[] = [{"winner":"player_2","loser":"player_1","reasoning":"Complete plan wins due to comprehensive enterprise needs. While basic plan offers cost savings, enterprise ICP leads require robust, scalable solutions that can adapt to complex organizational requirements without limitations."}, {"winner":"player_2","loser":"player_1","reasoning":"Complete plan wins due to comprehensive enterprise needs. While basic plan offers cost savings, enterprise ICP leads require robust, scalable solutions that can adapt to complex organizational requirements without limitations."}, {"winner":"player_2","loser":"player_1","reasoning":"Complete plan wins due to comprehensive enterprise needs. While basic plan offers cost savings, enterprise ICP leads require robust, scalable solutions that can adapt to complex organizational requirements without limitations."}]
   
   const {url = null, interval = 1000} = $props();
 
-  let polledData = $state(null);
+  let polledData:Log[] | null = $state(null);
   let intervalId = $state(null);
 
   const fetchData = async () => {
@@ -31,6 +40,10 @@
   });
 </script>
 
-<pre>
-  {JSON.stringify(polledData, null, 2)}
-</pre>
+{#if polledData}
+  <div class="log">
+    {#each polledData as log}
+      <RenderBattle {...log} />
+    {/each}
+  </div>
+{/if}
