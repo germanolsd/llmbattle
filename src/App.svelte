@@ -1,6 +1,7 @@
 <script>
  import Players from './lib/Players.svelte';
  import Log from './lib/Log.svelte';
+ import Score from './lib/Score.svelte';
 </script>
 
 <style>
@@ -43,11 +44,11 @@
   </div>
   <div class="log-container">
     <div class="log-section">
-      <h2>Battle Log (Top)</h2>
-      <Log url="http://localhost:5173/battles" />
+      <h2>Scores Log</h2>
+      <Score url="http://localhost:5173/scores" />
     </div>
     <div class="log-section">
-      <h2>Battle Log (Bottom)</h2>
+      <h2>Battle Log</h2>
       <Log url="http://localhost:5173/battles" />
     </div>
   </div>
