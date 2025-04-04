@@ -42,9 +42,11 @@
   }
   .winner.right {
     animation: winnerBattleRight 2s ease-in-out forwards;
+    grid-area: loser;
   }
 
   .loser.left {
+    grid-area: winner;
     animation: loserBattleLeft 2s ease-in-out forwards;
   }
 
