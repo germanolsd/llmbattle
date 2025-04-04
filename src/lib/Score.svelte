@@ -23,7 +23,7 @@
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      polledData = await response.json();
+      polledData = (await response.json()).reverse();
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -44,7 +44,6 @@
   <table>
     <thead>
       <tr>
-        <th>Player ID</th>
         <th>Player Name</th>
         <th>Score</th>
       </tr>
@@ -56,7 +55,6 @@
           in:fade={{ duration: 200 }}
           out:fade={{ duration: 200 }}
         >
-          <td>{player.player_id}</td>
           <td>{player.player_name}</td>
           <td>{player.score}</td>
         </tr>

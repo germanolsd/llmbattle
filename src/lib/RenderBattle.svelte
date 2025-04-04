@@ -6,10 +6,10 @@
 
 <div class="log-entry">
   <div class="winner" >
-    {winner}
+    {winner.name}
   </div>
   <div class="loser">
-    {loser}
+    {loser.name}
   </div>
   <div class="reasoning">{reasoning}</div>
 </div>
@@ -29,7 +29,7 @@
     color: white;
     padding: 10px;
     text-align: center;
-    animation: winnerBattle 4s ease-in-out forwards;
+    animation: winnerBattle 2s ease-in-out forwards;
   }
   .loser {
     grid-area: loser;
@@ -37,7 +37,7 @@
     color: white;
     padding: 10px;
     text-align: center;
-    animation: loserBattle 4s ease-in-out forwards;
+    animation: loserBattle 2s ease-in-out forwards;
   }
   .reasoning {
     grid-area: reasoning;
@@ -45,7 +45,7 @@
     color: white;
     padding: 10px;
     text-align: center;
-    animation: reasoningBattle 4.3s ease-out forwards;
+    animation: reasoningBattle 2.3s ease-out forwards;
     transform-origin: 50% 0%;
   }
 

@@ -3,6 +3,7 @@
 <script lang="ts">
   type Player = {
     id: string;
+    name: string;
     content: string;
     score: number;
     elo: number;
@@ -29,9 +30,13 @@
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      polledData = await response.json();
+      polledData = (await response.json()).players;
+      polledData = polledData.map(player => ({
+        ...player,
+        name: player.content.slice(0, 10)
+      }));
 
-      polledData.sort((a, b) => b.sort_value - a.sort_value);
+      polledData = polledData.sort((a, b) => b.score - a.score);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -56,7 +61,7 @@
         in:fade={{ duration: 200 }}
         out:fade={{ duration: 200 }}
       >
-        <td>{player.content}</td>
+        <td>{player.name}</td>
         <td>{player.elo}</td>
         <td>{player.score}</td>
         <td>{player.ffa_win_count}</td>

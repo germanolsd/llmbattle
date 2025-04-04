@@ -3,8 +3,8 @@
 <script lang="ts">
   type Log = {
     id: string;
-    winner: string;
-    loser: string;
+    winner: { name: string };
+    loser: { name: string };
     reasoning: string;
   }
   import { onMount } from 'svelte';
@@ -24,7 +24,11 @@
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      polledData = await response.json();
+      polledData = (await response.json()).reverse().map(log => ({
+        ...log,
+        winner: { name: log.winner.content.slice(0, 10) },
+        loser: { name: log.loser.content.slice(0, 10) }
+      }));
     } catch (error) {
       console.error('Error fetching data:', error);
     }
